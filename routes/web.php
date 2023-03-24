@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\GuestMiddleware;
+use App\Http\Middleware\UserMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('home');
 });
+
+Route::middleware([AdminMiddleware::class])->group(function () {
+    // Admin-only routes
+});
+
+Route::middleware([UserMiddleware::class])->group(function () {
+    // User-only routes
+});
+
+Route::middleware([GuestMiddleware::class])->group(function () {
+    // Guest-only routes
+});
+
