@@ -22,9 +22,6 @@
 <body>
 
 <div id="app">
-    <nav>
-        <top-nav/>
-    </nav>
     <main>
         @yield('content')
     </main>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\UserMiddleware;
@@ -18,12 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[HomeController::class, 'index']);
 
 Route::middleware([AdminMiddleware::class])->group(function () {
-    // Admin-only routes
+    Route::resource('admin', AdminController::class)->only(['index']);
 });
 
 Route::middleware([UserMiddleware::class])->group(function () {

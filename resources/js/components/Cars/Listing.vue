@@ -42,7 +42,7 @@
                         <h4>$45,620</h4>
                     </div>
                     <div class="col-6 align-self-end">
-                        <button>Add to Cart</button>
+                        <button @click="addCarToBasket('test')">Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -52,33 +52,42 @@
 
 <script>
 export default {
-    name: "Listing"
+    name: "Listing",
+
+    methods: {
+        addCarToBasket(product) {
+            this.$store.dispatch('addToBasket', product)
+        }
+    }
 }
 </script>
 
 <style>
-.cars-container{
+.cars-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    gap:15px;
+    gap: 15px;
 }
-.car-card{
+
+.car-card {
     width: 300px;
     border: 1px solid black;
     border-radius: 10px;
     height: 400px;
     padding: 10px;
 }
-.card-thumbnail{
+
+.card-thumbnail {
     width: 100%;
     height: 60%;
     padding-bottom: 5px;
     border-radius: 10px;
 }
-.card-details{
+
+.card-details {
     padding-bottom: 10px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
